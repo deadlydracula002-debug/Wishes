@@ -104,7 +104,7 @@ const Scene3 = () => {
     // Resume auto-rotation after 3 seconds
     autoRotateTimeout.current = setTimeout(() => {
       setIsAutoRotate(true);
-    }, 3000);
+    }, 30000);
   };
 
   // Mouse handlers
@@ -186,7 +186,7 @@ const Scene3 = () => {
         <div style={{ position: 'fixed', top: '50%', left: '50%', zIndex: 100 }}>
           <ConfettiExplosion
             force={0.8}
-            duration={30000}
+            duration={3000}
             particleCount={250}
             width={1600}
             colors={['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff']}
