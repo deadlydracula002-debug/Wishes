@@ -10,7 +10,7 @@
 
 html {
   scroll-behavior: smooth;
-  overflow: hidden; /* Prevent double scrollbars */
+  overflow: hidden;
 }
 
 body {
@@ -20,6 +20,10 @@ body {
   background-color: #0c0c1d;
   color: #fff;
   overflow: hidden;
+  /* Disable pull-to-refresh on mobile */
+  overscroll-behavior-y: contain;
+  /* Prevent zoom on double-tap */
+  touch-action: pan-y;
 }
 
 #root {
@@ -34,14 +38,14 @@ body {
   height: 100vh;
   overflow-y: scroll;
   overflow-x: hidden;
-  scroll-snap-type: y proximity; /* Smooth scroll snapping */
+  scroll-snap-type: y proximity;
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar (desktop only) */
 .app-container::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 .app-container::-webkit-scrollbar-track {
@@ -62,6 +66,8 @@ body {
   width: 100vw;
   height: 100vh;
   min-height: 100vh;
+  /* Mobile viewport height fix */
+  min-height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -89,6 +95,8 @@ canvas {
   z-index: 10;
   position: relative;
   animation: fadeInDown 1.2s ease-out;
+  padding: 0 20px;
+  text-align: center;
 }
 
 @keyframes fadeInDown {
@@ -110,6 +118,8 @@ canvas {
   z-index: 10;
   animation: bounce 2s infinite ease-in-out;
   letter-spacing: 1px;
+  padding: 0 20px;
+  text-align: center;
 }
 
 @keyframes bounce {
@@ -133,6 +143,8 @@ canvas {
   user-select: none;
   z-index: 10;
   animation: fadeInDown 1.2s ease-out;
+  padding: 0 20px;
+  text-align: center;
 }
 
 .scene-instruction {
@@ -143,18 +155,21 @@ canvas {
   z-index: 10;
   font-style: italic;
   letter-spacing: 0.5px;
+  padding: 0 20px;
+  text-align: center;
 }
 
-/* Scene 3 - Top text with white color and pink glow (matches Scene 1) */
 .final-message-top {
   position: absolute;
   top: 10%;
   font-family: 'Great Vibes', cursive;
   font-size: 4.5rem;
-  color: #ffffff; /* White text */
-  text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff69b4, 0 0 60px #ff69b4; /* Pink glow */
+  color: #ffffff;
+  text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff69b4, 0 0 60px #ff69b4;
   z-index: 10;
   animation: fadeInDown 1.2s ease-out;
+  padding: 0 20px;
+  text-align: center;
 }
 
 /* --- Page 1: Hearts Background --- */
@@ -215,6 +230,8 @@ canvas {
 .page2 {
   background: linear-gradient(180deg, #0c0c1d 0%, #1a0a2e 100%);
   cursor: grab;
+  /* Touch-friendly for mobile */
+  touch-action: none;
 }
 
 .page2:active {
@@ -245,6 +262,9 @@ canvas {
   transition: all 0.3s ease;
   animation: pulseButton 2s infinite;
   font-family: 'Poppins', sans-serif;
+  /* Mobile touch improvements */
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 .cut-cake-button:hover {
@@ -265,20 +285,21 @@ canvas {
   }
 }
 
-/* Celebration text with white color and pink glow */
+/* Celebration text */
 .celebration-text {
   position: absolute;
   bottom: 15%;
   left: 50%;
   transform: translateX(-50%);
   font-size: 1.5rem;
-  color: #ffffff; /* White text */
-  text-shadow: 0 0 15px #ff69b4, 0 0 30px #ff69b4; /* Pink glow */
+  color: #ffffff;
+  text-shadow: 0 0 15px #ff69b4, 0 0 30px #ff69b4;
   font-weight: bold;
   z-index: 10;
   animation: fadeInScale 0.8s ease-out;
   text-align: center;
   max-width: 90%;
+  padding: 0 20px;
 }
 
 @keyframes fadeInScale {
@@ -292,7 +313,9 @@ canvas {
   }
 }
 
-/* --- Responsive Design --- */
+/* --- Mobile Responsive Design --- */
+
+/* Tablets (768px and below) */
 @media (max-width: 768px) {
   .main-heading {
     font-size: 3rem;
@@ -300,37 +323,128 @@ canvas {
   
   .scene-heading {
     font-size: 2.5rem;
+    top: 10%;
   }
   
   .final-message-top {
     font-size: 3rem;
+    top: 12%;
   }
   
   .cut-cake-button {
     font-size: 1.1rem;
-    padding: 15px 30px;
+    padding: 15px 35px;
+    bottom: 12%;
   }
   
   .celebration-text {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    bottom: 12%;
+  }
+  
+  .scroll-down-prompt {
+    font-size: 0.95rem;
+    bottom: 30px;
+  }
+  
+  .scene-instruction {
+    font-size: 0.9rem;
+    bottom: 30px;
+  }
+  
+  .heart {
+    width: 25px;
+    height: 25px;
   }
 }
 
+/* Mobile Phones (480px and below) */
 @media (max-width: 480px) {
   .main-heading {
     font-size: 2.5rem;
+    padding: 0 15px;
   }
   
   .scene-heading {
     font-size: 2rem;
+    top: 12%;
+    padding: 0 15px;
   }
   
   .final-message-top {
     font-size: 2.5rem;
+    top: 15%;
+    padding: 0 15px;
   }
   
   .cut-cake-button {
     font-size: 1rem;
+    padding: 14px 30px;
+    bottom: 10%;
+  }
+  
+  .celebration-text {
+    font-size: 1.1rem;
+    bottom: 10%;
+    padding: 0 15px;
+  }
+  
+  .scroll-down-prompt {
+    font-size: 0.85rem;
+    bottom: 25px;
+  }
+  
+  .scene-instruction {
+    font-size: 0.85rem;
+    bottom: 25px;
+  }
+  
+  .heart {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Very Small Phones (360px and below) */
+@media (max-width: 360px) {
+  .main-heading {
+    font-size: 2rem;
+  }
+  
+  .scene-heading {
+    font-size: 1.8rem;
+  }
+  
+  .final-message-top {
+    font-size: 2rem;
+  }
+  
+  .cut-cake-button {
+    font-size: 0.9rem;
     padding: 12px 25px;
+  }
+  
+  .celebration-text {
+    font-size: 1rem;
+  }
+}
+
+/* Landscape mode on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .scene-heading,
+  .final-message-top {
+    top: 5%;
+    font-size: 2rem;
+  }
+  
+  .cut-cake-button,
+  .celebration-text {
+    bottom: 8%;
+  }
+  
+  .scroll-down-prompt,
+  .scene-instruction {
+    bottom: 15px;
+    font-size: 0.8rem;
   }
 }

@@ -1,4 +1,4 @@
-import React, { useRef, useState, Suspense } from 'react';
+import React, { useRef, useState, Suspense, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useTexture, Sparkles } from '@react-three/drei';
 import * as THREE from 'three';
@@ -14,25 +14,30 @@ const imageUrls = [
   '/images/img6.jpg',
 ];
 
-// Photo card with image on BOTH sides
-function PhotoCard({ url, position, rotation }) {
+// Photo card with smaller sizes
+function PhotoCard({ url, position, rotation, isMobile }) {
   const texture = useTexture(url);
+  
+  // Smaller card sizes across all devices
+  const borderWidth = isMobile ? 1.0 : 1.5;
+  const borderHeight = isMobile ? 1.4 : 2.0;
+  const imageWidth = isMobile ? 0.85 : 1.3;
+  const imageHeight = isMobile ? 1.25 : 1.8;
   
   return (
     <group position={position} rotation={rotation}>
-      
-      {/* PINK BORDER - Shows on both sides */}
+      {/* PINK BORDER */}
       <mesh position={[0, 0, 0]}>
-        <planeGeometry args={[1.9, 2.4]} />
+        <planeGeometry args={[borderWidth, borderHeight]} />
         <meshBasicMaterial 
           color="#ff4081" 
           side={THREE.DoubleSide}
         />
       </mesh>
       
-      {/* FRONT SIDE - Image on front */}
+      {/* FRONT SIDE - Image */}
       <mesh position={[0, 0, 0.01]}>
-        <planeGeometry args={[1.7, 2.2]} />
+        <planeGeometry args={[imageWidth, imageHeight]} />
         <meshBasicMaterial 
           map={texture}
           side={THREE.FrontSide}
@@ -40,26 +45,26 @@ function PhotoCard({ url, position, rotation }) {
         />
       </mesh>
       
-      {/* BACK SIDE - Same image on back */}
+      {/* BACK SIDE - Same image */}
       <mesh position={[0, 0, -0.01]} rotation={[0, Math.PI, 0]}>
-        <planeGeometry args={[1.7, 2.2]} />
+        <planeGeometry args={[imageWidth, imageHeight]} />
         <meshBasicMaterial 
           map={texture}
           side={THREE.FrontSide}
           toneMapped={false}
         />
       </mesh>
-      
     </group>
   );
 }
 
-function Gallery({ galleryRef }) {
+function Gallery({ galleryRef, isMobile }) {
+  const radius = isMobile ? 1.6 : 2.0;
+  
   return (
     <group ref={galleryRef}>
       {imageUrls.map((url, i) => {
         const angle = (i / imageUrls.length) * Math.PI * 2;
-        const radius = 2.5;
         const x = Math.sin(angle) * radius;
         const z = Math.cos(angle) * radius;
         
@@ -69,6 +74,7 @@ function Gallery({ galleryRef }) {
               url={url}
               position={[x, 0, z]}
               rotation={[0, -angle + Math.PI / 2, 0]}
+              isMobile={isMobile}
             />
           </Suspense>
         );
@@ -79,9 +85,21 @@ function Gallery({ galleryRef }) {
 
 const Scene2 = () => {
   const [isDragging, setIsDragging] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const startX = useRef(0);
   const startRotation = useRef(0);
   const galleryRef = useRef();
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
@@ -110,6 +128,34 @@ const Scene2 = () => {
     });
   };
 
+  const handleTouchStart = (e) => {
+    setIsDragging(true);
+    startX.current = e.touches[0].clientX;
+    if (galleryRef.current) {
+      startRotation.current = galleryRef.current.rotation.y;
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging || !galleryRef.current) return;
+    
+    const deltaX = e.touches[0].clientX - startX.current;
+    const newRotation = startRotation.current + (deltaX * 0.01);
+    
+    gsap.to(galleryRef.current.rotation, {
+      y: newRotation,
+      duration: 0.15,
+      ease: 'power1.out',
+      overwrite: true,
+    });
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
+  const cameraPosition = isMobile ? [0, 0, 3.5] : [0, 0, 4.5];
+
   return (
     <section 
       className="page-section page2"
@@ -117,6 +163,9 @@ const Scene2 = () => {
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
       onMouseMove={handleMouseMove}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       style={{ 
         cursor: isDragging ? 'grabbing' : 'grab',
         userSelect: 'none',
@@ -126,44 +175,41 @@ const Scene2 = () => {
       
       <Canvas 
         camera={{ 
-          position: [0, 0, 5],
-          fov: 60,
+          position: cameraPosition, 
+          fov: isMobile ? 70 : 60,
           near: 0.1,
           far: 100
         }}
       >
-        {/* Bright lighting from all angles */}
         <ambientLight intensity={3} />
         <directionalLight position={[5, 5, 5]} intensity={2} />
         <directionalLight position={[-5, -5, -5]} intensity={1.5} />
         
-        {/* SPARKLES BACKGROUND - NEW! */}
         <Sparkles
-          count={200}               // Number of sparkle particles
-          scale={15}                // Size of the sparkle area
-          size={3}                  // Size of each sparkle dot
-          speed={0.3}               // Animation speed
-          opacity={0.6}             // Transparency
-          color="#ffffff"           // White sparkles
+          count={isMobile ? 150 : 200}
+          scale={isMobile ? 10 : 15}
+          size={isMobile ? 2 : 3}
+          speed={0.3}
+          opacity={0.6}
+          color="#ffffff"
         />
         
-        {/* Another layer of colored sparkles */}
         <Sparkles
-          count={100}
-          scale={12}
-          size={2}
+          count={isMobile ? 75 : 100}
+          scale={isMobile ? 8 : 12}
+          size={isMobile ? 1.5 : 2}
           speed={0.2}
           opacity={0.4}
-          color="#ff69b4"           // Pink sparkles to match theme
+          color="#ff69b4"
         />
         
         <Suspense fallback={null}>
-          <Gallery galleryRef={galleryRef} />
+          <Gallery galleryRef={galleryRef} isMobile={isMobile} />
         </Suspense>
       </Canvas>
       
       <p className="scene-instruction">
-        ← Drag to rotate →
+        {isMobile ? '👆 Swipe to rotate' : '← Drag to rotate →'}
       </p>
     </section>
   );
