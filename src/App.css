@@ -1,7 +1,11 @@
+/* ========================================
+   COMPLETE BIRTHDAY WEBSITE CSS
+   All Scenes + Mobile Responsive
+   ======================================== */
+
 /* --- Global Styles & Fonts --- */
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;700&display=swap');
 
-/* --- CRITICAL: Smooth Scrolling Setup --- */
 * {
   margin: 0;
   padding: 0;
@@ -11,6 +15,8 @@
 html {
   scroll-behavior: smooth;
   overflow: hidden;
+  height: 100%;
+  height: -webkit-fill-available;
 }
 
 body {
@@ -22,18 +28,21 @@ body {
   overflow: hidden;
   overscroll-behavior-y: contain;
   touch-action: pan-y;
+  height: 100%;
+  height: -webkit-fill-available;
 }
 
 #root {
   width: 100%;
   height: 100vh;
+  height: -webkit-fill-available;
   overflow: hidden;
 }
 
-/* Main scrollable container */
 .app-container {
   width: 100%;
   height: 100vh;
+  height: -webkit-fill-available;
   overflow-y: scroll;
   overflow-x: hidden;
   scroll-snap-type: y proximity;
@@ -41,7 +50,6 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Custom scrollbar (desktop only) */
 .app-container::-webkit-scrollbar {
   width: 8px;
 }
@@ -59,7 +67,6 @@ body {
   background: #ff69b4;
 }
 
-/* Each full-height section */
 .page-section {
   width: 100vw;
   height: 100vh;
@@ -73,7 +80,6 @@ body {
   scroll-snap-align: start;
 }
 
-/* Canvas positioning */
 canvas {
   position: absolute !important;
   top: 0;
@@ -83,7 +89,7 @@ canvas {
   z-index: 0;
 }
 
-/* --- Text & Headings --- */
+/* --- Common Text Styles --- */
 .main-heading {
   font-family: 'Great Vibes', cursive;
   font-size: 4.5rem;
@@ -169,7 +175,10 @@ canvas {
   text-align: center;
 }
 
-/* --- Page 1: Hearts Background --- */
+/* ========================================
+   SCENE 1: HEARTS BACKGROUND
+   ======================================== */
+
 .page1 {
   background: linear-gradient(180deg, #1e103b 0%, #0c0c1d 100%);
 }
@@ -223,227 +232,7 @@ canvas {
   }
 }
 
-/* --- Page 2: Image Gallery --- */
-.page2 {
-  background: linear-gradient(180deg, #0c0c1d 0%, #1a0a2e 100%);
-  cursor: grab;
-  touch-action: pan-y; /* Allow vertical scrolling */
-}
-
-.page2:active {
-  cursor: grabbing;
-}
-
-/* --- Page 3: Cake Scene --- */
-.page3 {
-  background: linear-gradient(180deg, #1a0a2e 0%, #0c0c1d 100%);
-}
-
-/* Cut the Cake Button */
-.cut-cake-button {
-  position: absolute;
-  bottom: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 18px 40px;
-  background: linear-gradient(135deg, #ff4081, #ff6b9d);
-  color: white;
-  border: none;
-  border-radius: 50px;
-  font-size: 1.3rem;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 10;
-  box-shadow: 0 8px 25px rgba(255, 64, 129, 0.5);
-  transition: all 0.3s ease;
-  animation: pulseButton 2s infinite;
-  font-family: 'Poppins', sans-serif;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-}
-
-.cut-cake-button:hover {
-  transform: translateX(-50%) translateY(-5px) scale(1.05);
-  box-shadow: 0 12px 35px rgba(255, 64, 129, 0.7);
-}
-
-.cut-cake-button:active {
-  transform: translateX(-50%) translateY(-2px) scale(0.98);
-}
-
-@keyframes pulseButton {
-  0%, 100% {
-    box-shadow: 0 8px 25px rgba(255, 64, 129, 0.5);
-  }
-  50% {
-    box-shadow: 0 8px 35px rgba(255, 64, 129, 0.8);
-  }
-}
-
-/* Celebration text */
-.celebration-text {
-  position: absolute;
-  bottom: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.5rem;
-  color: #ffffff;
-  text-shadow: 0 0 15px #ff69b4, 0 0 30px #ff69b4;
-  font-weight: bold;
-  z-index: 10;
-  animation: fadeInScale 0.8s ease-out;
-  text-align: center;
-  max-width: 90%;
-  padding: 0 20px;
-}
-
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) scale(0.5);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) scale(1);
-  }
-}
-
-/* --- Mobile Responsive Design --- */
-
-/* Tablets (768px and below) */
-@media (max-width: 768px) {
-  .main-heading {
-    font-size: 3rem;
-  }
-  
-  .scene-heading {
-    font-size: 2.5rem;
-    top: 10%;
-  }
-  
-  .final-message-top {
-    font-size: 3rem;
-    top: 12%;
-  }
-  
-  .cut-cake-button {
-    font-size: 1.1rem;
-    padding: 15px 35px;
-    bottom: 12%;
-  }
-  
-  .celebration-text {
-    font-size: 1.3rem;
-    bottom: 12%;
-  }
-  
-  .scroll-down-prompt {
-    font-size: 0.95rem;
-    bottom: 30px;
-  }
-  
-  .scene-instruction {
-    font-size: 0.9rem;
-    bottom: 30px;
-  }
-  
-  .heart {
-    width: 25px;
-    height: 25px;
-  }
-}
-
-/* Mobile Phones (480px and below) */
-@media (max-width: 480px) {
-  .main-heading {
-    font-size: 2.5rem;
-    padding: 0 15px;
-  }
-  
-  .scene-heading {
-    font-size: 2rem;
-    top: 12%;
-    padding: 0 15px;
-  }
-  
-  .final-message-top {
-    font-size: 2.5rem;
-    top: 15%;
-    padding: 0 15px;
-  }
-  
-  .cut-cake-button {
-    font-size: 1rem;
-    padding: 14px 30px;
-    bottom: 10%;
-  }
-  
-  .celebration-text {
-    font-size: 1.1rem;
-    bottom: 10%;
-    padding: 0 15px;
-  }
-  
-  .scroll-down-prompt {
-    font-size: 0.85rem;
-    bottom: 25px;
-  }
-  
-  .scene-instruction {
-    font-size: 0.85rem;
-    bottom: 25px;
-  }
-  
-  .heart {
-    width: 20px;
-    height: 20px;
-  }
-}
-
-/* Very Small Phones (360px and below) */
-@media (max-width: 360px) {
-  .main-heading {
-    font-size: 2rem;
-  }
-  
-  .scene-heading {
-    font-size: 1.8rem;
-  }
-  
-  .final-message-top {
-    font-size: 2rem;
-  }
-  
-  .cut-cake-button {
-    font-size: 0.9rem;
-    padding: 12px 25px;
-  }
-  
-  .celebration-text {
-    font-size: 1rem;
-  }
-}
-
-/* Landscape mode on mobile */
-@media (max-height: 500px) and (orientation: landscape) {
-  .scene-heading,
-  .final-message-top {
-    top: 5%;
-    font-size: 2rem;
-  }
-  
-  .cut-cake-button,
-  .celebration-text {
-    bottom: 8%;
-  }
-  
-  .scroll-down-prompt,
-  .scene-instruction {
-    bottom: 15px;
-    font-size: 0.8rem;
-  }
-}
-/* --- Music Button --- */
+/* Music Button */
 .music-button {
   position: fixed;
   top: 20px;
@@ -475,31 +264,443 @@ canvas {
   transform: translateY(0) scale(0.98);
 }
 
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .music-button {
-    top: 15px;
-    right: 15px;
-    padding: 10px 20px;
-    font-size: 0.9rem;
+/* ========================================
+   SCENE 2: PHOTO GALLERY
+   ======================================== */
+
+.page2 {
+  background: linear-gradient(180deg, #0c0c1d 0%, #1a0a2e 100%);
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.page2:active {
+  cursor: grabbing;
+}
+
+/* ========================================
+   SCENE 4: BALLOON GAME (ULTRA RESPONSIVE)
+   ======================================== */
+
+.page4 {
+  background: linear-gradient(180deg, #0c0c1d 0%, #1e103b 50%, #2d1b4e 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.balloon-scene-title {
+  position: absolute;
+  top: clamp(3%, 8%, 8%);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  color: #ffffff;
+  text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff69b4;
+  z-index: 1000;
+  text-align: center;
+  width: 90%;
+  animation: fadeInDown 1.2s ease-out;
+  line-height: 1.2;
+  margin: 0 auto;
+}
+
+.balloon-instruction {
+  position: absolute;
+  bottom: clamp(20px, 4vh, 40px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  color: rgba(255, 255, 255, 0.9);
+  z-index: 1000;
+  text-align: center;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  width: 90%;
+  max-width: 600px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: clamp(8px, 2vw, 12px) clamp(15px, 3vw, 20px);
+  border-radius: clamp(15px, 3vw, 20px);
+  backdrop-filter: blur(10px);
+  margin: 0 auto;
+}
+
+/* Balloons Container */
+.balloons-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 500;
+  pointer-events: none;
+}
+
+/* Balloon Wrapper */
+.balloon-wrapper {
+  position: absolute;
+  bottom: -200px;
+  transform: translateX(-50%);
+  animation: floatUp 15s ease-in-out infinite;
+  pointer-events: all;
+  cursor: pointer;
+  z-index: 500;
+}
+
+.balloon-wrapper:hover {
+  transform: translateX(-50%) scale(1.15);
+  filter: brightness(1.2);
+}
+
+.balloon-wrapper:active .balloon {
+  animation: quickPop 0.3s ease-out forwards;
+}
+
+@keyframes quickPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% {
+    transform: scale(0);
+    opacity: 0;
   }
 }
 
-@media (max-width: 480px) {
-  .music-button {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 0.85rem;
+@keyframes floatUp {
+  0% {
+    bottom: -200px;
+    transform: translateX(-50%) rotate(0deg);
+  }
+  15% {
+    transform: translateX(calc(-50% + 30px)) rotate(-5deg);
+  }
+  30% {
+    transform: translateX(calc(-50% - 25px)) rotate(5deg);
+  }
+  45% {
+    transform: translateX(calc(-50% + 20px)) rotate(-4deg);
+  }
+  60% {
+    transform: translateX(calc(-50% - 15px)) rotate(4deg);
+  }
+  75% {
+    transform: translateX(calc(-50% + 10px)) rotate(-2deg);
+  }
+  100% {
+    bottom: 110vh;
+    transform: translateX(-50%) rotate(0deg);
   }
 }
-/* --- Countdown Timer (Full Screen Overlay) --- */
+
+/* Balloon Body - Responsive Size */
+.balloon {
+  position: relative;
+  width: clamp(60px, 12vw, 90px);
+  height: clamp(75px, 15vw, 110px);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  box-shadow: 
+    inset -15px -15px 30px rgba(0, 0, 0, 0.3),
+    inset 10px 10px 20px rgba(255, 255, 255, 0.4),
+    0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease;
+}
+
+.balloon-shine {
+  position: absolute;
+  top: clamp(15px, 3vw, 20px);
+  left: clamp(20px, 4vw, 25px);
+  width: clamp(25px, 5vw, 30px);
+  height: clamp(30px, 6vw, 35px);
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  filter: blur(8px);
+  transform: rotate(-30deg);
+  pointer-events: none;
+}
+
+.balloon-knot {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(14px, 3vw, 18px);
+  height: clamp(12px, 2.5vw, 14px);
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  box-shadow: 
+    inset 0 -3px 5px rgba(0, 0, 0, 0.4),
+    0 2px 5px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+/* Balloon String - Responsive */
+.balloon-string {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(2px, 0.4vw, 3px);
+  height: clamp(80px, 15vw, 120px);
+  background: linear-gradient(
+    to bottom, 
+    rgba(255, 255, 255, 0.8), 
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.3)
+  );
+  border-radius: 2px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+
+/* Pop Effect */
+.balloon-pop-effect {
+  position: absolute;
+  bottom: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(3rem, 8vw, 5rem);
+  animation: popExplosion 0.8s ease-out forwards;
+  pointer-events: none;
+  z-index: 1000;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes popExplosion {
+  0% {
+    transform: translateX(-50%) scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.8) rotate(180deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(-50%) scale(3.5) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Messages Container - Responsive */
+.messages-container {
+  position: absolute;
+  top: clamp(18%, 20%, 22%);
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(85%, 90%, 95%);
+  max-width: 600px;
+  max-height: clamp(50%, 55%, 60%);
+  overflow-y: auto;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 2vw, 15px);
+  padding: clamp(15px, 3vw, 20px);
+  scrollbar-width: thin;
+  scrollbar-color: #ff69b4 transparent;
+}
+
+.messages-container::-webkit-scrollbar {
+  width: clamp(6px, 1vw, 8px);
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff4081, #ff69b4);
+  border-radius: 10px;
+}
+
+.revealed-message {
+  background: rgba(12, 12, 29, 0.95);
+  padding: clamp(15px, 3vw, 20px) clamp(18px, 4vw, 25px);
+  border-radius: clamp(12px, 2.5vw, 15px);
+  border: 2px solid #ff69b4;
+  color: #ffffff;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  animation: messageReveal 0.6s ease-out;
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 5;
+  line-height: 1.6;
+}
+
+@keyframes messageReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(-30px) rotate(-10deg);
+  }
+  60% {
+    transform: scale(1.05) translateY(0) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotate(0deg);
+  }
+}
+
+/* Completion Overlay */
+.completion-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(12, 12, 29, 0.95);
+  z-index: 1500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 1s ease-out;
+  padding: 20px;
+}
+
+.completion-content {
+  text-align: center;
+  padding: clamp(25px, 5vw, 40px);
+  background: linear-gradient(135deg, rgba(255, 64, 129, 0.3), rgba(255, 105, 180, 0.3));
+  border-radius: clamp(20px, 4vw, 30px);
+  border: clamp(2px, 0.4vw, 3px) solid #ff69b4;
+  box-shadow: 0 20px 60px rgba(255, 64, 129, 0.6);
+  backdrop-filter: blur(20px);
+  max-width: 90%;
+}
+
+.completion-content h3 {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  color: #ffffff;
+  text-shadow: 0 0 30px #ff69b4, 0 0 60px #ff69b4;
+  margin-bottom: clamp(15px, 3vw, 20px);
+  animation: glow 2s ease-in-out infinite;
+  line-height: 1.2;
+}
+
+.completion-content p {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.9);
+  margin: clamp(10px, 2vw, 15px) 0;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
+}
+
+.final-wish {
+  font-size: clamp(1.3rem, 4vw, 2rem) !important;
+  font-weight: bold;
+  margin-top: clamp(20px, 4vw, 30px) !important;
+  animation: pulseGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 20px #ff69b4;
+  }
+  50% {
+    transform: scale(1.08);
+    text-shadow: 0 0 40px #ff69b4, 0 0 60px #ff69b4;
+  }
+}
+
+/* ========================================
+   SCENE 4 RESPONSIVE BREAKPOINTS
+   ======================================== */
+
+/* Very small screens */
+@media (max-width: 360px) {
+  .balloon-scene-title {
+    font-size: 1.8rem;
+  }
+
+  .balloon {
+    width: 55px;
+    height: 70px;
+  }
+
+  .balloon-string {
+    height: 70px;
+  }
+
+  .revealed-message {
+    font-size: 0.85rem;
+    padding: 12px 15px;
+  }
+
+  .messages-container {
+    gap: 8px;
+    padding: 12px;
+  }
+}
+
+/* Landscape mode */
+@media (orientation: landscape) and (max-height: 500px) {
+  .balloon-scene-title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    top: 5%;
+  }
+
+  .balloon {
+    width: clamp(50px, 10vw, 70px);
+    height: clamp(65px, 12vw, 85px);
+  }
+
+  .messages-container {
+    top: 15%;
+    max-height: 65%;
+  }
+
+  .balloon-instruction {
+    bottom: 15px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Touch devices */
+@media (hover: none) {
+  .balloon-wrapper:hover {
+    transform: translateX(-50%) scale(1);
+  }
+
+  .balloon-wrapper:active {
+    transform: translateX(-50%) scale(1.1);
+  }
+}
+
+/* Desktop optimization */
+@media (min-width: 1024px) {
+  .balloon-scene-title {
+    top: 8%;
+  }
+
+  .messages-container {
+    max-width: 650px;
+  }
+}
+
+/* Prevent text selection */
+.balloon-scene-title,
+.balloon-instruction,
+.revealed-message,
+.completion-content {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* ========================================
+   END OF SCENE 4 CSS
+   ======================================== */
+
+
+/* ========================================
+   COUNTDOWN TIMER (CENTERED EVERYWHERE)
+   ======================================== */
+
 .countdown-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(135deg, #1e103b 0%, #0c0c1d 50%, #1a0a2e 100%);
   z-index: 9999;
   display: flex;
@@ -507,9 +708,10 @@ canvas {
   align-items: center;
   animation: fadeIn 1s ease-out;
   overflow: hidden;
+  padding: 15px;
+  box-sizing: border-box;
 }
 
-/* Animated background particles */
 .countdown-overlay::before {
   content: '';
   position: absolute;
@@ -518,41 +720,42 @@ canvas {
   background: radial-gradient(circle, rgba(255, 64, 129, 0.1) 1%, transparent 2%);
   background-size: 50px 50px;
   animation: particleMove 20s linear infinite;
+  pointer-events: none;
 }
 
 @keyframes particleMove {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(50px, 50px);
-  }
-}
-
-.countdown-content {
-  text-align: center;
-  padding: 40px;
-  background: rgba(12, 12, 29, 0.9);
-  border-radius: 30px;
-  border: 3px solid rgba(255, 64, 129, 0.5);
-  box-shadow: 0 20px 60px rgba(255, 64, 129, 0.4);
-  backdrop-filter: blur(20px);
-  animation: fadeInScale 1.2s ease-out;
-  position: relative;
-  z-index: 1;
-  max-width: 90%;
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@keyframes fadeInScale {
+/* FIXED: Perfectly centered on all screens */
+.countdown-content {
+  text-align: center;
+  padding: clamp(20px, 5vw, 40px);
+  background: rgba(12, 12, 29, 0.9);
+  border-radius: clamp(20px, 4vw, 30px);
+  border: clamp(2px, 0.3vw, 3px) solid rgba(255, 64, 129, 0.5);
+  box-shadow: 0 20px 60px rgba(255, 64, 129, 0.4);
+  backdrop-filter: blur(20px);
+  animation: fadeInScaleCenter 1.2s ease-out;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: min(90vw, 900px);
+  margin: auto;
+  box-sizing: border-box;
+  /* Force absolute center */
+  left: 0;
+  right: 0;
+}
+
+/* Animation maintains center */
+@keyframes fadeInScaleCenter {
   from {
     opacity: 0;
     transform: scale(0.8);
@@ -565,82 +768,109 @@ canvas {
 
 .countdown-title {
   font-family: 'Great Vibes', cursive;
-  font-size: 4rem;
+  font-size: clamp(2rem, 7vw, 4rem);
   color: #ffffff;
   text-shadow: 0 0 30px #ff69b4, 0 0 60px #ff69b4;
-  margin-bottom: 10px;
+  margin: 0 auto clamp(8px, 2vw, 15px);
   animation: glow 2s ease-in-out infinite;
+  line-height: 1.2;
+  word-wrap: break-word;
+  text-align: center;
+  width: 100%;
+  display: block;
 }
 
 .countdown-subtitle {
-  font-size: 1.3rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.3rem);
   color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 40px;
+  margin: 0 auto clamp(20px, 4vw, 40px);
   font-family: 'Poppins', sans-serif;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  text-align: center;
+  width: 100%;
+  display: block;
 }
 
 .countdown-timer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  margin-bottom: 40px;
+  gap: clamp(6px, 2vw, 20px);
+  margin: 0 auto clamp(20px, 4vw, 40px);
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .countdown-block {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background: linear-gradient(135deg, rgba(255, 64, 129, 0.3), rgba(255, 105, 180, 0.3));
-  padding: 25px 30px;
-  border-radius: 20px;
+  padding: clamp(12px, 3vw, 25px) clamp(15px, 4vw, 30px);
+  border-radius: clamp(12px, 2.5vw, 20px);
   border: 2px solid rgba(255, 64, 129, 0.4);
-  min-width: 100px;
+  min-width: clamp(55px, 12vw, 100px);
   transition: all 0.3s ease;
   box-shadow: 0 5px 20px rgba(255, 64, 129, 0.2);
+  text-align: center;
 }
 
 .countdown-block:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   border-color: rgba(255, 64, 129, 0.8);
   box-shadow: 0 10px 30px rgba(255, 64, 129, 0.5);
 }
 
 .countdown-number {
-  font-size: 4rem;
+  font-size: clamp(1.8rem, 6vw, 4rem);
   font-weight: bold;
   color: #ff69b4;
   text-shadow: 0 0 20px #ff69b4;
   font-family: 'Poppins', sans-serif;
   line-height: 1;
+  text-align: center;
+  display: block;
 }
 
 .countdown-label {
-  font-size: 1rem;
+  font-size: clamp(0.65rem, 1.5vw, 1rem);
   color: rgba(255, 255, 255, 0.9);
   text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-top: 10px;
+  letter-spacing: clamp(1px, 0.3vw, 2px);
+  margin-top: clamp(5px, 1.5vw, 10px);
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
+  text-align: center;
+  display: block;
 }
 
 .countdown-separator {
-  font-size: 4rem;
+  font-size: clamp(1.8rem, 6vw, 4rem);
   color: #ff69b4;
   font-weight: bold;
   text-shadow: 0 0 20px #ff69b4;
   animation: blink 1.5s ease-in-out infinite;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .countdown-message {
-  font-size: 1.1rem;
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
   color: rgba(255, 255, 255, 0.8);
   font-family: 'Poppins', sans-serif;
   font-style: italic;
   max-width: 600px;
   margin: 0 auto;
+  line-height: 1.6;
+  padding: 0 10px;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
 }
 
 @keyframes glow {
@@ -653,111 +883,21 @@ canvas {
 }
 
 @keyframes blink {
-  0%, 49% {
-    opacity: 1;
-  }
-  50%, 100% {
-    opacity: 0.3;
-  }
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0.3; }
 }
 
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .countdown-content {
-    padding: 30px 20px;
-    max-width: 95%;
-  }
+/* ========================================
+   REVEAL ANIMATION
+   ======================================== */
 
-  .countdown-title {
-    font-size: 2.5rem;
-  }
-
-  .countdown-subtitle {
-    font-size: 1rem;
-    margin-bottom: 30px;
-  }
-
-  .countdown-timer {
-    gap: 10px;
-    margin-bottom: 30px;
-  }
-
-  .countdown-block {
-    padding: 20px 25px;
-    min-width: 70px;
-  }
-
-  .countdown-number {
-    font-size: 2.5rem;
-  }
-
-  .countdown-label {
-    font-size: 0.8rem;
-  }
-
-  .countdown-separator {
-    font-size: 2.5rem;
-  }
-
-  .countdown-message {
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .countdown-content {
-    padding: 20px 15px;
-  }
-
-  .countdown-title {
-    font-size: 2rem;
-  }
-
-  .countdown-subtitle {
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-  }
-
-  .countdown-timer {
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .countdown-block {
-    padding: 15px 20px;
-    min-width: 60px;
-  }
-
-  .countdown-number {
-    font-size: 2rem;
-  }
-
-  .countdown-label {
-    font-size: 0.7rem;
-    margin-top: 5px;
-  }
-
-  .countdown-separator {
-    font-size: 2rem;
-    display: none;
-  }
-
-  .countdown-message {
-    font-size: 0.85rem;
-  }
-}
-/* --- Reveal Animation (When Countdown Reaches Zero) --- */
 .reveal-animation {
   animation: fadeOut 3s ease-out forwards;
 }
 
 @keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  70% {
-    opacity: 1;
-  }
+  0% { opacity: 1; }
+  70% { opacity: 1; }
   100% {
     opacity: 0;
     visibility: hidden;
@@ -768,15 +908,26 @@ canvas {
   text-align: center;
   position: relative;
   z-index: 2;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
 }
 
 .reveal-title {
   font-family: 'Great Vibes', cursive;
-  font-size: 6rem;
+  font-size: clamp(2.5rem, 10vw, 6rem);
   color: #ffffff;
   text-shadow: 0 0 40px #ff69b4, 0 0 80px #ff69b4;
-  margin-bottom: 30px;
+  margin: 0 auto clamp(15px, 3vw, 30px);
   animation: revealPulse 1s ease-in-out infinite;
+  line-height: 1.2;
+  text-align: center;
+  width: 100%;
+  display: block;
 }
 
 @keyframes revealPulse {
@@ -791,10 +942,17 @@ canvas {
 }
 
 .reveal-message {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 3vw, 1.5rem);
   color: rgba(255, 255, 255, 0.9);
   font-family: 'Poppins', sans-serif;
   animation: fadeInUp 1.5s ease-out;
+  line-height: 1.6;
+  padding: 0 15px;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: block;
 }
 
 @keyframes fadeInUp {
@@ -808,7 +966,6 @@ canvas {
   }
 }
 
-/* Fireworks Animation */
 .reveal-fireworks {
   position: absolute;
   top: 0;
@@ -820,8 +977,8 @@ canvas {
 
 .firework {
   position: absolute;
-  width: 4px;
-  height: 4px;
+  width: clamp(3px, 0.5vw, 4px);
+  height: clamp(3px, 0.5vw, 4px);
   border-radius: 50%;
   box-shadow: 
     0 0 10px 2px #ff69b4,
@@ -830,35 +987,11 @@ canvas {
   animation: explode 1.5s ease-out infinite;
 }
 
-.firework:nth-child(1) {
-  left: 20%;
-  top: 30%;
-  animation-delay: 0s;
-}
-
-.firework:nth-child(2) {
-  left: 80%;
-  top: 40%;
-  animation-delay: 0.3s;
-}
-
-.firework:nth-child(3) {
-  left: 50%;
-  top: 20%;
-  animation-delay: 0.6s;
-}
-
-.firework:nth-child(4) {
-  left: 30%;
-  top: 60%;
-  animation-delay: 0.9s;
-}
-
-.firework:nth-child(5) {
-  left: 70%;
-  top: 70%;
-  animation-delay: 1.2s;
-}
+.firework:nth-child(1) { left: 20%; top: 30%; animation-delay: 0s; }
+.firework:nth-child(2) { left: 80%; top: 40%; animation-delay: 0.3s; }
+.firework:nth-child(3) { left: 50%; top: 20%; animation-delay: 0.6s; }
+.firework:nth-child(4) { left: 30%; top: 60%; animation-delay: 0.9s; }
+.firework:nth-child(5) { left: 70%; top: 70%; animation-delay: 1.2s; }
 
 @keyframes explode {
   0% {
@@ -875,23 +1008,861 @@ canvas {
   }
 }
 
-/* Mobile responsive reveal */
-@media (max-width: 768px) {
-  .reveal-title {
-    font-size: 3.5rem;
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   ======================================== */
+
+/* Desktop - Extra centering */
+@media (min-width: 1024px) {
+  .countdown-content {
+    margin: auto;
+    left: 0;
+    right: 0;
+  }
+}
+
+/* Hide separators on small screens */
+@media (max-width: 400px) {
+  .countdown-separator {
+    display: none;
+  }
+  
+  .countdown-timer {
+    gap: 8px;
+  }
+}
+
+/* Landscape mode */
+@media (orientation: landscape) and (max-height: 500px) {
+  .countdown-content {
+    padding: 15px 20px;
+    max-height: 90vh;
+    overflow-y: auto;
   }
 
-  .reveal-message {
-    font-size: 1.2rem;
+  .countdown-title {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+
+  .countdown-subtitle {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+  }
+}
+
+/* Prevent all shifts */
+.countdown-overlay *,
+.countdown-content * {
+  box-sizing: border-box;
+}
+
+/* Touch optimizations */
+@media (hover: none) {
+  .countdown-block:hover {
+    transform: none;
+  }
+  .countdown-block:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Prevent text selection */
+.countdown-content,
+.countdown-title,
+.countdown-subtitle,
+.countdown-block,
+.countdown-message,
+.reveal-title,
+.reveal-message {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* ========================================
+   END OF COUNTDOWN CSS
+   ======================================== */
+
+/* ========================================
+   SCENE 3: CAKE (IMPROVED MOBILE)
+   ======================================== */
+
+.page3 {
+  background: linear-gradient(180deg, #1a0a2e 0%, #0c0c1d 100%);
+  position: relative;
+}
+
+.cut-cake-button {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 18px 40px;
+  background: linear-gradient(135deg, #ff4081, #ff6b9d);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 8px 25px rgba(255, 64, 129, 0.5);
+  transition: all 0.3s ease;
+  animation: pulseButton 2s infinite;
+  font-family: 'Poppins', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.cut-cake-button:hover {
+  transform: translateX(-50%) translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(255, 64, 129, 0.7);
+}
+
+.cut-cake-button:active {
+  transform: translateX(-50%) translateY(-2px) scale(0.98);
+}
+
+@keyframes pulseButton {
+  0%, 100% {
+    box-shadow: 0 8px 25px rgba(255, 64, 129, 0.5);
+  }
+  50% {
+    box-shadow: 0 8px 35px rgba(255, 64, 129, 0.8);
+  }
+}
+
+.celebration-text {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  color: #ffffff;
+  text-shadow: 0 0 15px #ff69b4, 0 0 30px #ff69b4;
+  font-weight: bold;
+  z-index: 10;
+  animation: fadeInScale 0.8s ease-out;
+  text-align: center;
+  max-width: 90%;
+  padding: 0 20px;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+/* Scene 3 Responsive */
+@media (max-width: 768px) {
+  .final-message-top {
+    font-size: 2.8rem;
+    top: 12%;
+  }
+  
+  .cut-cake-button {
+    font-size: 1.1rem;
+    padding: 15px 32px;
+    bottom: 18%;
+  }
+  
+  .celebration-text {
+    font-size: 1.3rem;
+    bottom: 18%;
   }
 }
 
 @media (max-width: 480px) {
-  .reveal-title {
-    font-size: 2.5rem;
+  .final-message-top {
+    font-size: 2.2rem;
+    top: 15%;
   }
+  
+  .cut-cake-button {
+    font-size: 1rem;
+    padding: 13px 28px;
+    bottom: 20%;
+  }
+  
+  .celebration-text {
+    font-size: 1.1rem;
+    bottom: 20%;
+  }
+}
 
-  .reveal-message {
+@media (max-width: 360px) {
+  .final-message-top {
+    font-size: 1.9rem;
+  }
+  
+  .cut-cake-button {
+    font-size: 0.9rem;
+    padding: 12px 24px;
+  }
+  
+  .celebration-text {
     font-size: 1rem;
   }
 }
+
+/* ========================================
+   SCENE 5: CARD (IMPROVED MOBILE LAYOUT)
+   ======================================== */
+
+.page5 {
+  background: linear-gradient(180deg, #2d1b4e 0%, #1e103b 50%, #0c0c1d 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 2000px;
+  overflow: hidden;
+  position: relative;
+  padding: 20px;
+}
+
+.card-scene-title {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.5rem;
+  color: #ffffff;
+  text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff69b4;
+  z-index: 10;
+  animation: fadeInDown 1.2s ease-out;
+  text-align: center;
+  width: 90%;
+}
+
+.card-instruction {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  z-index: 10;
+  text-align: center;
+  font-style: italic;
+  width: 90%;
+  padding: 0 20px;
+}
+
+.birthday-card {
+  position: relative;
+  width: 600px;
+  height: 400px;
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+  z-index: 1;
+  margin: 60px 0;
+}
+
+.birthday-card.open {
+  transform: rotateY(-180deg);
+}
+
+.card-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ff4081, #ff69b4, #ff1493);
+  border-radius: 20px;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 20px 60px rgba(255, 64, 129, 0.6);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-front:hover {
+  transform: scale(1.05);
+  box-shadow: 0 25px 70px rgba(255, 64, 129, 0.8);
+}
+
+.card-decoration {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.gift-bow {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8rem;
+  animation: bounceRotate 3s ease-in-out infinite;
+}
+
+@keyframes bounceRotate {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(10deg) scale(1.1);
+  }
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 2rem;
+  animation: sparkleFloat 2s ease-in-out infinite;
+}
+
+.sparkle-1 { top: 10%; left: 15%; animation-delay: 0s; }
+.sparkle-2 { top: 15%; right: 15%; animation-delay: 0.5s; }
+.sparkle-3 { bottom: 15%; left: 20%; animation-delay: 1s; }
+.sparkle-4 { bottom: 10%; right: 20%; animation-delay: 1.5s; }
+
+@keyframes sparkleFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.2);
+    opacity: 1;
+  }
+}
+
+.card-front-text {
+  font-family: 'Great Vibes', cursive;
+  font-size: 4rem;
+  color: white;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  margin-top: 80px;
+  z-index: 1;
+}
+
+.card-hint {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 20px;
+  animation: pulse 2s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.card-inside {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ffffff, #fff5f7);
+  border-radius: 20px;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  display: flex;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border: 3px solid #ff69b4;
+  overflow: hidden;
+}
+
+.card-left {
+  width: 40%;
+  background: linear-gradient(180deg, #ff69b4, #ff4081);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-right: 3px solid rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.decorative-border {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.flower {
+  font-size: 4rem;
+  animation: flowerSway 3s ease-in-out infinite;
+}
+
+.flower:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.flower:nth-child(3) {
+  animation-delay: 1s;
+}
+
+@keyframes flowerSway {
+  0%, 100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+.card-right {
+  width: 60%;
+  padding: 30px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #ff69b4 #fff5f7;
+  flex-shrink: 0;
+}
+
+.card-right::-webkit-scrollbar {
+  width: 6px;
+}
+
+.card-right::-webkit-scrollbar-track {
+  background: rgba(255, 245, 247, 0.5);
+}
+
+.card-right::-webkit-scrollbar-thumb {
+  background: #ff69b4;
+  border-radius: 10px;
+}
+
+.card-right::-webkit-scrollbar-thumb:hover {
+  background: #ff4081;
+}
+
+.card-message {
+  color: #333;
+}
+
+.message-greeting {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5rem;
+  color: #ff4081;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 4px rgba(255, 64, 129, 0.3);
+}
+
+.message-paragraph {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  color: #555;
+  font-family: 'Poppins', sans-serif;
+}
+
+.message-wish {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ff4081;
+  margin: 25px 0;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.message-signature {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #666;
+  margin-top: 30px;
+  text-align: right;
+  font-family: 'Poppins', sans-serif;
+}
+
+.signature-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  color: #ff4081;
+  display: block;
+  margin-top: 5px;
+}
+
+.card-actions {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90%;
+  max-width: 650px;
+}
+
+.download-btn {
+  padding: 12px 24px;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  white-space: nowrap;
+}
+
+.download-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+}
+
+.download-btn:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.download-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.download-image {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  box-shadow: 0 5px 20px rgba(46, 204, 113, 0.4);
+}
+
+.download-image:hover:not(:disabled) {
+  box-shadow: 0 8px 25px rgba(46, 204, 113, 0.6);
+}
+
+.download-pdf {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
+}
+
+.download-pdf:hover:not(:disabled) {
+  box-shadow: 0 8px 25px rgba(231, 76, 60, 0.6);
+}
+
+.close-card-btn {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #ff4081, #ff69b4);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(255, 64, 129, 0.4);
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.close-card-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 64, 129, 0.6);
+}
+
+/* ========================================
+   SCENE 5 MOBILE RESPONSIVE (IMPROVED)
+   ======================================== */
+
+/* Tablets (768px) */
+@media (max-width: 768px) {
+  .page5 {
+    padding: 15px;
+  }
+
+  .card-scene-title {
+    font-size: 2.5rem;
+    top: 3%;
+  }
+
+  .birthday-card {
+    width: 85%;
+    max-width: 450px;
+    height: 500px;
+    margin: 50px 0;
+  }
+
+  .card-front-text {
+    font-size: 3rem;
+    margin-top: 60px;
+  }
+
+  .gift-bow {
+    font-size: 6rem;
+  }
+
+  .card-hint {
+    font-size: 1.3rem;
+  }
+
+  .sparkle {
+    font-size: 1.5rem;
+  }
+
+  .card-inside {
+    flex-direction: column;
+  }
+
+  .card-left {
+    width: 100%;
+    height: 25%;
+    border-right: none;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+    padding: 15px;
+  }
+
+  .decorative-border {
+    flex-direction: row;
+    gap: 25px;
+  }
+
+  .flower {
+    font-size: 3rem;
+  }
+
+  .card-right {
+    width: 100%;
+    height: 75%;
+    padding: 25px 20px;
+  }
+
+  .message-greeting {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+
+  .message-paragraph {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .message-wish {
+    font-size: 1.2rem;
+    margin: 20px 0;
+  }
+
+  .message-signature {
+    font-size: 1rem;
+  }
+
+  .signature-name {
+    font-size: 1.8rem;
+  }
+
+  .card-actions {
+    bottom: 35px;
+    gap: 10px;
+  }
+
+  .download-btn,
+  .close-card-btn {
+    padding: 11px 20px;
+    font-size: 0.9rem;
+  }
+
+  .card-instruction {
+    font-size: 0.9rem;
+    bottom: 15px;
+  }
+}
+
+/* Mobile (480px) */
+@media (max-width: 480px) {
+  .page5 {
+    padding: 10px;
+  }
+
+  .card-scene-title {
+    font-size: 2rem;
+    top: 2%;
+  }
+
+  .birthday-card {
+    width: 92%;
+    height: 450px;
+    margin: 40px 0;
+  }
+
+  .card-front-text {
+    font-size: 2.5rem;
+    margin-top: 50px;
+  }
+
+  .gift-bow {
+    font-size: 5rem;
+  }
+
+  .card-hint {
+    font-size: 1.2rem;
+  }
+
+  .card-left {
+    height: 22%;
+    padding: 12px;
+  }
+
+  .decorative-border {
+    gap: 20px;
+  }
+
+  .flower {
+    font-size: 2.5rem;
+  }
+
+  .card-right {
+    height: 78%;
+    padding: 20px 15px;
+  }
+
+  .message-greeting {
+    font-size: 1.8rem;
+  }
+
+  .message-paragraph {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .message-wish {
+    font-size: 1.1rem;
+  }
+
+  .message-signature {
+    font-size: 0.95rem;
+  }
+
+  .signature-name {
+    font-size: 1.6rem;
+  }
+
+  .card-actions {
+    flex-direction: column;
+    bottom: 25px;
+    gap: 8px;
+  }
+
+  .download-btn,
+  .close-card-btn {
+    width: 100%;
+    padding: 10px 18px;
+    font-size: 0.85rem;
+  }
+
+  .card-instruction {
+    font-size: 0.85rem;
+    bottom: 10px;
+  }
+}
+
+/* Small Phones (360px) */
+@media (max-width: 360px) {
+  .card-scene-title {
+    font-size: 1.8rem;
+  }
+
+  .birthday-card {
+    width: 95%;
+    height: 420px;
+    margin: 35px 0;
+  }
+
+  .card-front-text {
+    font-size: 2.2rem;
+  }
+
+  .gift-bow {
+    font-size: 4.5rem;
+  }
+
+  .card-left {
+    height: 20%;
+  }
+
+  .flower {
+    font-size: 2.2rem;
+  }
+
+  .card-right {
+    height: 80%;
+    padding: 18px 12px;
+  }
+
+  .message-greeting {
+    font-size: 1.6rem;
+  }
+
+  .message-paragraph {
+    font-size: 0.85rem;
+  }
+
+  .message-wish {
+    font-size: 1rem;
+  }
+
+  .signature-name {
+    font-size: 1.5rem;
+  }
+
+  .download-btn,
+  .close-card-btn {
+    font-size: 0.8rem;
+    padding: 9px 16px;
+  }
+}
+
+/* Landscape Mode */
+@media (orientation: landscape) and (max-height: 500px) {
+  .page5 {
+    padding: 10px;
+  }
+
+  .card-scene-title {
+    font-size: 2rem;
+    top: 2%;
+  }
+
+  .birthday-card {
+    width: 500px;
+    height: 350px;
+    margin: 30px 0;
+  }
+
+  .card-front-text {
+    font-size: 2.5rem;
+    margin-top: 40px;
+  }
+
+  .gift-bow {
+    font-size: 4rem;
+  }
+
+  .card-actions {
+    flex-direction: row;
+    bottom: 30px;
+    gap: 8px;
+  }
+
+  .download-btn,
+  .close-card-btn {
+    width: auto;
+    flex: 1;
+    font-size: 0.85rem;
+    padding: 8px 15px;
+  }
+
+  .card-instruction {
+    bottom: 10px;
+    font-size: 0.8rem;
+  }
+}
+
+/* ========================================
+   END OF SCENE 3 & 5 FIXES
+   ======================================== */

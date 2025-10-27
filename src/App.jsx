@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Scene1 from './Scene1';
 import Scene2 from './Scene2';
 import Scene3 from './Scene3';
+import Scene4 from './Scene4';
+import Scene5 from './Scene5'; // ← Add this
 import Countdown from './Countdown';
 import './App.css';
 
@@ -10,14 +12,12 @@ function App() {
 
   return (
     <>
-      {/* COUNTDOWN OVERLAY - Covers everything when active */}
       <Countdown 
-        targetDate="2025-03-15T00:00:00" 
-        isActive={true}
+        targetDate="2026-03-15T00:00:00" 
+        isActive={false}
         onRevealComplete={() => setIsContentRevealed(true)}
       />
       
-      {/* Main content - Hidden until countdown reveals */}
       <div 
         className="app-container"
         style={{ 
@@ -29,6 +29,8 @@ function App() {
         <Scene1 />
         <Scene2 />
         <Scene3 />
+        <Scene4 />
+        <Scene5 /> {/* ← Add this */}
       </div>
     </>
   );
