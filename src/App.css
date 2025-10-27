@@ -20,9 +20,7 @@ body {
   background-color: #0c0c1d;
   color: #fff;
   overflow: hidden;
-  /* Disable pull-to-refresh on mobile */
   overscroll-behavior-y: contain;
-  /* Prevent zoom on double-tap */
   touch-action: pan-y;
 }
 
@@ -66,7 +64,6 @@ body {
   width: 100vw;
   height: 100vh;
   min-height: 100vh;
-  /* Mobile viewport height fix */
   min-height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
@@ -230,8 +227,7 @@ canvas {
 .page2 {
   background: linear-gradient(180deg, #0c0c1d 0%, #1a0a2e 100%);
   cursor: grab;
-  /* Touch-friendly for mobile */
-  touch-action: none;
+  touch-action: pan-y; /* Allow vertical scrolling */
 }
 
 .page2:active {
@@ -262,7 +258,6 @@ canvas {
   transition: all 0.3s ease;
   animation: pulseButton 2s infinite;
   font-family: 'Poppins', sans-serif;
-  /* Mobile touch improvements */
   -webkit-tap-highlight-color: transparent;
   user-select: none;
 }
