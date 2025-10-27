@@ -63,7 +63,7 @@ function Scene1() {
         isActive={true}
       />
       
-      <h1 className="main-heading">Happy Birthday! 🎂</h1>
+      <h1 className="main-heading">Happy Birthday Shree Saini! 🎂</h1>
       <p className="scroll-down-prompt">Scroll down to explore ↓</p>
     </section>
   );
