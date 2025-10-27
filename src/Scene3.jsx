@@ -3,6 +3,11 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { useGLTF, Sparkles } from '@react-three/drei';
 import ConfettiExplosion from 'react-confetti-explosion';
 import gsap from 'gsap';
+// In Scene3.jsx
+import Countdown from './Countdown';
+
+// Add before the button:
+<Countdown targetDate="2026-03-15T00:00:00" isActive={false} />
 
 function CakeModel({ cakeRef, isAutoRotate }) {
   const { scene } = useGLTF('/cake.glb');

@@ -3,6 +3,11 @@ import { Canvas } from '@react-three/fiber';
 import { useTexture, Sparkles } from '@react-three/drei';
 import * as THREE from 'three';
 import gsap from 'gsap';
+// In Scene2.jsx
+import Countdown from './Countdown';
+
+// Add before the Canvas:
+<Countdown targetDate="2026-03-15T00:00:00" isActive={false} />
 
 const imageUrls = [
   '/images/img1.jpg',
