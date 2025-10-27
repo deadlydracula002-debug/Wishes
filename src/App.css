@@ -1213,7 +1213,7 @@ canvas {
 }
 
 /* ========================================
-   SCENE 5: CARD (IMPROVED MOBILE LAYOUT)
+   SCENE 5: BIRTHDAY CARD (FIXED VISIBILITY)
    ======================================== */
 
 .page5 {
@@ -1270,6 +1270,7 @@ canvas {
   transform: rotateY(-180deg);
 }
 
+/* FIXED: Card Front - Hide when open */
 .card-front {
   position: absolute;
   width: 100%;
@@ -1277,6 +1278,7 @@ canvas {
   background: linear-gradient(135deg, #ff4081, #ff69b4, #ff1493);
   border-radius: 20px;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1285,7 +1287,15 @@ canvas {
   box-shadow: 0 20px 60px rgba(255, 64, 129, 0.6);
   border: 3px solid rgba(255, 255, 255, 0.3);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  z-index: 2;
+}
+
+/* Hide front completely when card is open */
+.birthday-card.open .card-front {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
 }
 
 .card-front:hover {
@@ -1362,6 +1372,7 @@ canvas {
   50% { transform: scale(1.1); }
 }
 
+/* FIXED: Card Inside - Show when open */
 .card-inside {
   position: absolute;
   width: 100%;
@@ -1369,11 +1380,19 @@ canvas {
   background: linear-gradient(135deg, #ffffff, #fff5f7);
   border-radius: 20px;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   transform: rotateY(180deg);
   display: flex;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   border: 3px solid #ff69b4;
   overflow: hidden;
+  z-index: 1;
+}
+
+/* Make inside fully visible when open */
+.birthday-card.open .card-inside {
+  opacity: 1;
+  visibility: visible;
 }
 
 .card-left {
@@ -1566,11 +1585,7 @@ canvas {
   box-shadow: 0 8px 25px rgba(255, 64, 129, 0.6);
 }
 
-/* ========================================
-   SCENE 5 MOBILE RESPONSIVE (IMPROVED)
-   ======================================== */
-
-/* Tablets (768px) */
+/* Mobile Responsive */
 @media (max-width: 768px) {
   .page5 {
     padding: 15px;
@@ -1673,7 +1688,6 @@ canvas {
   }
 }
 
-/* Mobile (480px) */
 @media (max-width: 480px) {
   .page5 {
     padding: 10px;
@@ -1761,7 +1775,6 @@ canvas {
   }
 }
 
-/* Small Phones (360px) */
 @media (max-width: 360px) {
   .card-scene-title {
     font-size: 1.8rem;
@@ -1817,52 +1830,6 @@ canvas {
   }
 }
 
-/* Landscape Mode */
-@media (orientation: landscape) and (max-height: 500px) {
-  .page5 {
-    padding: 10px;
-  }
-
-  .card-scene-title {
-    font-size: 2rem;
-    top: 2%;
-  }
-
-  .birthday-card {
-    width: 500px;
-    height: 350px;
-    margin: 30px 0;
-  }
-
-  .card-front-text {
-    font-size: 2.5rem;
-    margin-top: 40px;
-  }
-
-  .gift-bow {
-    font-size: 4rem;
-  }
-
-  .card-actions {
-    flex-direction: row;
-    bottom: 30px;
-    gap: 8px;
-  }
-
-  .download-btn,
-  .close-card-btn {
-    width: auto;
-    flex: 1;
-    font-size: 0.85rem;
-    padding: 8px 15px;
-  }
-
-  .card-instruction {
-    bottom: 10px;
-    font-size: 0.8rem;
-  }
-}
-
 /* ========================================
-   END OF SCENE 3 & 5 FIXES
+   END OF SCENE 5 FIX
    ======================================== */
